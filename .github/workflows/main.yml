@@ -4,10 +4,10 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-        - name: Install Chrome
-        - uses: browser-actions/setup-chrome@v1
+        - name: Chrome
+        - uses: logikal-io/install-chrome@v1
           with:
-            chrome-version: 123
+           version: 123
         - name: Checkout
           uses: actions/checkout@v4
         - uses: actions/setup-node@v3
