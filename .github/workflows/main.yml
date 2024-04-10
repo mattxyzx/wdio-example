@@ -4,10 +4,8 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-        - name: Chrome
-        - uses: logikal-io/install-chrome@v1
-          with:
-           version: 123
+        - name: Install Chromium
+          run: sudo apt-get install chromium-browser
         - name: Checkout
           uses: actions/checkout@v4
         - uses: actions/setup-node@v3
