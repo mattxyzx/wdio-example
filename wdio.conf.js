@@ -49,10 +49,10 @@ export const config = {
     // Sauce Labs platform configurator - a great tool to configure your capabilities:
     // https://saucelabs.com/platform/platform-configurator
     //
-    //capabilities: [{
-    //    browserName: 'chrome',
-    //    'goog:chromeOptions': {args: ['--no-sandbox', '--disable-dev-shm-usage', '--headless', '--disable-gpu',  '--remote-debugging-pipe']}
-   // }],
+    capabilities: [{
+        browserName: 'chrome',
+        'goog:chromeOptions': {args: ['--no-sandbox', '--disable-dev-shm-usage', '--headless', '--disable-gpu',  '--remote-debugging-pipe']}
+    }],
 
     //
     // ===================
