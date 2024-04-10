@@ -1,0 +1,2201 @@
+{
+	"info": {
+		"_postman_id": "a8844cc3-6d6c-4854-ad01-8979ce8fe685",
+		"name": "LaraCommerce API",
+		"description": "## This documentation describes how to access the LaraCommerce API service\n\nContact Support:  \nEmail: [laracommerce12@gmail.com](mailto:laracommerce12@gmail.com) / muhammadhabibfery@gmail.com",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_uid": "34148893-a8844cc3-6d6c-4854-ad01-8979ce8fe685"
+	},
+	"item": [
+		{
+			"name": "user",
+			"item": [
+				{
+					"name": "Register user",
+					"id": "fbfa8b1b-f317-41cf-940c-dcf8027b1ba7",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true,
+						"disabledSystemHeaders": {
+							"accept": true
+						}
+					},
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"matej-admin2\",\r\n    \"username\": \"matej-admin2\",\r\n    \"email\": \"matej.vitkovic+adminx@mono-software.com\",\r\n    \"phone\": \"123456789042\",\r\n    \"password\": \"matejmatej1$\",\r\n    \"password_confirmation\": \"matejmatej1$\"\r\n}"
+						},
+						"url": {
+							"raw": "{{baseUrl}}/register",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"register"
+							]
+						}
+					},
+					"response": [
+						{
+							"id": "a6a041be-ec14-49ae-994d-bfd44953a029",
+							"name": "Successfull operation",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"name": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									},
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\": \"john xennon\",\r\n    \"username\": \"john-lennon\",\r\n    \"email\": \"johnlennon@beatles.com\",\r\n    \"phone\": \"0812345678\",\r\n    \"password\": \"secret@123\",\r\n    \"password_confirmation\": \"secret@123\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseUrl}}/register",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"register"
+									]
+								}
+							},
+							"status": "Created",
+							"code": 201,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"name": "Content-Type",
+									"value": "application/json",
+									"description": "",
+									"type": "text"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"code\": 201,\n    \"message\": \"Account has been successfully registered, please check your email to verify your account.\"\n}"
+						},
+						{
+							"id": "a2696cb1-3892-45da-afc9-4824aa9451ac",
+							"name": "Unprocessable Content",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"name": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									},
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\": \"john lennon\",\r\n    \"username\": \"john-lennon\",\r\n    \"email\": \"johnlennon@beatles.com\",\r\n    \"phone\": \"0812345678\",\r\n    \"password\": \"abc\",\r\n    \"password_confirmation\": \"abc\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseUrl}}/register",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"register"
+									]
+								}
+							},
+							"status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+							"code": 422,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"name": "Content-Type",
+									"value": "application/json",
+									"description": "",
+									"type": "text"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"code\": 422,\n    \"message\": \"The given data was invalid\",\n    \"errors\": {\n        \"username\": [\n            \"The username has already been taken.\"\n        ],\n        \"email\": [\n            \"The email has already been taken.\"\n        ],\n        \"phone\": [\n            \"The phone has already been taken.\"\n        ],\n        \"password\": [\n            \"The password must be at least 8 characters.\",\n            \"The password must contain at least one symbol.\",\n            \"The password must contain at least one number.\"\n        ]\n    }\n}"
+						}
+					]
+				},
+				{
+					"name": "Login user with username",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "52f7be25-bdbd-4e62-948d-6a4a8445c886",
+								"exec": [
+									"let jsonResponse = JSON.parse(responseBody);\r",
+									"let token = jsonResponse.token;\r",
+									"pm.environment.set(\"BearerToken\", token);\r",
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"id": "931c88b5-db8b-4434-8135-7d30cb443cd2",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true,
+						"disabledSystemHeaders": {
+							"accept": true
+						}
+					},
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"username\": \"{{username}}\",\r\n    \"password\": \"{{password}}\"\r\n}"
+						},
+						"url": {
+							"raw": "{{baseUrl}}/login",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"login"
+							]
+						}
+					},
+					"response": [
+						{
+							"id": "08bb8189-aaf4-4d9d-9ddb-555c51608796",
+							"name": "Successfull operation",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"name": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									},
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"username\": \"john-lennon\",\r\n    \"password\": \"secret@123\",\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "https://laracommerce.test/api/login",
+									"protocol": "https",
+									"host": [
+										"laracommerce",
+										"test"
+									],
+									"path": [
+										"api",
+										"login"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Server",
+									"value": "nginx/1.19.5"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Vary",
+									"value": "Accept-Encoding"
+								},
+								{
+									"key": "X-Powered-By",
+									"value": "PHP/8.1.10"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, private"
+								},
+								{
+									"key": "Date",
+									"value": "Sat, 04 Feb 2023 17:58:26 GMT"
+								},
+								{
+									"key": "X-RateLimit-Limit",
+									"value": "60"
+								},
+								{
+									"key": "X-RateLimit-Remaining",
+									"value": "59"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Encoding",
+									"value": "gzip"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"code\": 200,\n    \"message\": \"Logged in succesfully.\",\n    \"data\": {\n        \"id\": 0,\n        \"name\": \"john lennon\",\n        \"username\": \"john-lennon\",\n        \"email\": \"johnlennon@beatles.com\",\n        \"phone\": \"0812345678\",\n        \"address\": null,\n        \"avatar\": null\n    },\n    \"token\": \"randomToken\"\n}"
+						},
+						{
+							"id": "265a760e-6958-45f4-8e47-3422507cbca1",
+							"name": "Unprocessable Content",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"name": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									},
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"username\": \"john-lennon\",\r\n    \"password\": \"abc\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseUrl}}/login",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"login"
+									]
+								}
+							},
+							"status": "Unprocessable Content",
+							"code": 422,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Server",
+									"value": "nginx/1.19.5"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "X-Powered-By",
+									"value": "PHP/8.1.10"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, private"
+								},
+								{
+									"key": "Date",
+									"value": "Sat, 04 Feb 2023 18:04:05 GMT"
+								},
+								{
+									"key": "X-RateLimit-Limit",
+									"value": "60"
+								},
+								{
+									"key": "X-RateLimit-Remaining",
+									"value": "59"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"code\": 422,\n    \"message\": \"The given data was invalid\",\n    \"errors\": {\n        \"username\": [\n            \"The credentials does not match.\"\n        ]\n    }\n}"
+						}
+					]
+				},
+				{
+					"name": "Login user with email",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "c15ba704-3954-4995-a747-a88b6f9ccf4f",
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.not.not.have.status(200);\r",
+									"});\r",
+									"// username login should fail"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"id": "15a7e865-51f5-4d6e-a085-59c3f9c92896",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true,
+						"disabledSystemHeaders": {
+							"accept": true
+						}
+					},
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"username\": \"{{email}}\",\r\n    \"password\": \"{{password}}\"\r\n}"
+						},
+						"url": {
+							"raw": "{{baseUrl}}/login",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"login"
+							]
+						}
+					},
+					"response": [
+						{
+							"id": "00d461c1-8c99-4b9a-8e1f-a16340ccaead",
+							"name": "Successfull operation",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"name": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									},
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"username\": \"john-lennon\",\r\n    \"password\": \"secret@123\",\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "https://laracommerce.test/api/login",
+									"protocol": "https",
+									"host": [
+										"laracommerce",
+										"test"
+									],
+									"path": [
+										"api",
+										"login"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Server",
+									"value": "nginx/1.19.5"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Vary",
+									"value": "Accept-Encoding"
+								},
+								{
+									"key": "X-Powered-By",
+									"value": "PHP/8.1.10"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, private"
+								},
+								{
+									"key": "Date",
+									"value": "Sat, 04 Feb 2023 17:58:26 GMT"
+								},
+								{
+									"key": "X-RateLimit-Limit",
+									"value": "60"
+								},
+								{
+									"key": "X-RateLimit-Remaining",
+									"value": "59"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Encoding",
+									"value": "gzip"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"code\": 200,\n    \"message\": \"Logged in succesfully.\",\n    \"data\": {\n        \"id\": 0,\n        \"name\": \"john lennon\",\n        \"username\": \"john-lennon\",\n        \"email\": \"johnlennon@beatles.com\",\n        \"phone\": \"0812345678\",\n        \"address\": null,\n        \"avatar\": null\n    },\n    \"token\": \"randomToken\"\n}"
+						},
+						{
+							"id": "42003b44-3752-4929-93b1-8543536e83b5",
+							"name": "Unprocessable Content",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"name": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									},
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"username\": \"john-lennon\",\r\n    \"password\": \"abc\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseUrl}}/login",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"login"
+									]
+								}
+							},
+							"status": "Unprocessable Content",
+							"code": 422,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Server",
+									"value": "nginx/1.19.5"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "X-Powered-By",
+									"value": "PHP/8.1.10"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, private"
+								},
+								{
+									"key": "Date",
+									"value": "Sat, 04 Feb 2023 18:04:05 GMT"
+								},
+								{
+									"key": "X-RateLimit-Limit",
+									"value": "60"
+								},
+								{
+									"key": "X-RateLimit-Remaining",
+									"value": "59"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"code\": 422,\n    \"message\": \"The given data was invalid\",\n    \"errors\": {\n        \"username\": [\n            \"The credentials does not match.\"\n        ]\n    }\n}"
+						}
+					]
+				},
+				{
+					"name": "Logout user",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "1cac53d1-c7d0-4466-bced-f8eab9d0a6bb",
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"id": "aed94bfc-52f7-4b13-9e7d-de2a23f6845a",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true,
+						"disabledSystemHeaders": {
+							"accept": true
+						}
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{BearerToken}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/logout",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"logout"
+							]
+						}
+					},
+					"response": [
+						{
+							"id": "65f9f0bc-bb96-4015-82f7-8a28e66a73a4",
+							"name": "Successfull operation",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									},
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{baseUrl}}/logout",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"logout"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Server",
+									"value": "nginx/1.19.5"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Vary",
+									"value": "Accept-Encoding"
+								},
+								{
+									"key": "X-Powered-By",
+									"value": "PHP/8.1.10"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, private"
+								},
+								{
+									"key": "Date",
+									"value": "Sat, 04 Feb 2023 20:27:55 GMT"
+								},
+								{
+									"key": "X-RateLimit-Limit",
+									"value": "60"
+								},
+								{
+									"key": "X-RateLimit-Remaining",
+									"value": "59"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Encoding",
+									"value": "gzip"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"code\": 200,\n    \"message\": \"Logged out succesfully.\"\n}"
+						}
+					]
+				}
+			],
+			"id": "2a231e96-0d18-4e7b-9d83-b4420ea74d05",
+			"description": "## **This section contains about authentication endpoints**",
+			"auth": {
+				"type": "noauth"
+			},
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "bae8858e-e15b-4a06-b171-0df1a41ba18f",
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"id": "766ffe55-0ef1-4269-9ebc-5e0a67a1bf7b",
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				}
+			]
+		},
+		{
+			"name": "merchant",
+			"item": [
+				{
+					"name": "product",
+					"item": [
+						{
+							"name": "Create product",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "978a2cb0-5b2c-4122-a544-01d43eab5a4a",
+										"exec": [
+											"pm.test(\"Status code is 200\", function () {\r",
+											"    pm.response.to.have.status(200);\r",
+											"});"
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"id": "202c58c3-4f79-4bf1-a74b-a54047d02b30",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true,
+								"disabledSystemHeaders": {
+									"accept": true
+								}
+							},
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{BearerToken}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									},
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"categoryId\": 0,\r\n    \"name\": \"{{$randomAdjective}}\",\r\n    \"description\": \"{{$randomCatchPhrase}}\",\r\n    \"price\": 10,\r\n    \"weight\": 20,\r\n    \"stock\": 30\r\n}"
+								},
+								"url": {
+									"raw": "{{baseUrl}}/merchant/products",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"merchant",
+										"products"
+									]
+								}
+							},
+							"response": [
+								{
+									"id": "3ee8bd4e-332f-4308-a332-78e662e54143",
+									"name": "Unprocessable content (Category not found)",
+									"originalRequest": {
+										"method": "POST",
+										"header": [
+											{
+												"key": "Content-Type",
+												"name": "Content-Type",
+												"value": "application/json",
+												"type": "text"
+											},
+											{
+												"key": "Accept",
+												"value": "application/json",
+												"type": "text"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n    \"categoryId\": 99,\r\n    \"name\": \"product 1\",\r\n    \"description\": \"lorem ipsum\",\r\n    \"price\": 100000,\r\n    \"weight\": 100,\r\n    \"stock\": 3\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{baseUrl}}/merchant/products",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"merchant",
+												"products"
+											]
+										}
+									},
+									"status": "Unprocessable Content",
+									"code": 422,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Server",
+											"value": "nginx/1.19.5"
+										},
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										},
+										{
+											"key": "Transfer-Encoding",
+											"value": "chunked"
+										},
+										{
+											"key": "Connection",
+											"value": "keep-alive"
+										},
+										{
+											"key": "X-Powered-By",
+											"value": "PHP/8.1.10"
+										},
+										{
+											"key": "Cache-Control",
+											"value": "no-cache, private"
+										},
+										{
+											"key": "Date",
+											"value": "Tue, 07 Feb 2023 19:49:29 GMT"
+										},
+										{
+											"key": "X-RateLimit-Limit",
+											"value": "60"
+										},
+										{
+											"key": "X-RateLimit-Remaining",
+											"value": "59"
+										},
+										{
+											"key": "Access-Control-Allow-Origin",
+											"value": "*"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"code\": 422,\n    \"message\": \"The given data was invalid\",\n    \"errors\": {\n        \"category_id\": [\n            \"The selected category is invalid.\"\n        ]\n    }\n}"
+								},
+								{
+									"id": "c7e16ef6-f117-4e55-8f7a-a731cdd6316b",
+									"name": "Unprocessable Content (Duplicate of product's name)",
+									"originalRequest": {
+										"method": "POST",
+										"header": [
+											{
+												"key": "Content-Type",
+												"name": "Content-Type",
+												"value": "application/json",
+												"type": "text"
+											},
+											{
+												"key": "Accept",
+												"value": "application/json",
+												"type": "text"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n    \"categoryId\": 1,\r\n    \"name\": \"product 1\",\r\n    \"description\": \"lorem ipsum\",\r\n    \"price\": 100000,\r\n    \"weight\": 100,\r\n    \"stock\": 3\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{baseUrl}}/merchant/products",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"merchant",
+												"products"
+											]
+										}
+									},
+									"status": "Unprocessable Content",
+									"code": 422,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Server",
+											"value": "nginx/1.19.5"
+										},
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										},
+										{
+											"key": "Transfer-Encoding",
+											"value": "chunked"
+										},
+										{
+											"key": "Connection",
+											"value": "keep-alive"
+										},
+										{
+											"key": "X-Powered-By",
+											"value": "PHP/8.1.10"
+										},
+										{
+											"key": "Cache-Control",
+											"value": "no-cache, private"
+										},
+										{
+											"key": "Date",
+											"value": "Tue, 07 Feb 2023 19:57:02 GMT"
+										},
+										{
+											"key": "X-RateLimit-Limit",
+											"value": "60"
+										},
+										{
+											"key": "X-RateLimit-Remaining",
+											"value": "58"
+										},
+										{
+											"key": "Access-Control-Allow-Origin",
+											"value": "*"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"code\": 422,\n    \"message\": \"The given data was invalid\",\n    \"errors\": {\n        \"name\": [\n            \"The name has already been taken.\"\n        ]\n    }\n}"
+								},
+								{
+									"id": "025b916a-b70d-40e7-a482-bcf6714ff80f",
+									"name": "Successfull operation",
+									"originalRequest": {
+										"method": "POST",
+										"header": [
+											{
+												"key": "Content-Type",
+												"name": "Content-Type",
+												"value": "application/json",
+												"type": "text"
+											},
+											{
+												"key": "Accept",
+												"value": "application/json",
+												"type": "text"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n    \"categoryId\": 1,\r\n    \"name\": \"product 1\",\r\n    \"description\": \"lorem ipsum\",\r\n    \"price\": 100000,\r\n    \"weight\": 100,\r\n    \"stock\": 3\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{baseUrl}}/merchant/products",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"merchant",
+												"products"
+											]
+										}
+									},
+									"status": "Created",
+									"code": 201,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Server",
+											"value": "nginx/1.19.5"
+										},
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										},
+										{
+											"key": "Transfer-Encoding",
+											"value": "chunked"
+										},
+										{
+											"key": "Connection",
+											"value": "keep-alive"
+										},
+										{
+											"key": "X-Powered-By",
+											"value": "PHP/8.1.10"
+										},
+										{
+											"key": "Cache-Control",
+											"value": "no-cache, private"
+										},
+										{
+											"key": "Date",
+											"value": "Tue, 07 Feb 2023 23:19:18 GMT"
+										},
+										{
+											"key": "X-RateLimit-Limit",
+											"value": "60"
+										},
+										{
+											"key": "X-RateLimit-Remaining",
+											"value": "58"
+										},
+										{
+											"key": "Access-Control-Allow-Origin",
+											"value": "*"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"code\": 201,\n    \"message\": \"The product created successfully\",\n    \"data\": {\n        \"id\": 0,\n        \"name\": \"Product 1\",\n        \"slug\": \"product-1\",\n        \"description\": \"lorem-ipsum\",\n        \"price\": 100000,\n        \"weight\": 100,\n        \"stock\": 3,\n        \"sold\": 0\n    }\n}"
+								}
+							]
+						},
+						{
+							"name": "Create product as unverified user",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "978a2cb0-5b2c-4122-a544-01d43eab5a4a",
+										"exec": [
+											"pm.test(\"Status code is 200\", function () {\r",
+											"    pm.response.to.have.status(200);\r",
+											"});"
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"id": "a71e7b79-46f1-4dc1-ad05-73ae19ed7baf",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true,
+								"disabledSystemHeaders": {
+									"accept": true
+								}
+							},
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{BearerToken}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									},
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"categoryId\": 0,\r\n    \"name\": \"testproduct\",\r\n    \"description\": \"testing product\",\r\n    \"price\": 10,\r\n    \"weight\": 20,\r\n    \"stock\": 30\r\n}"
+								},
+								"url": {
+									"raw": "{{baseUrl}}/merchant/products",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"merchant",
+										"products"
+									]
+								}
+							},
+							"response": [
+								{
+									"id": "d94bf7dc-0d4e-4185-8caa-05de0ebb3a9c",
+									"name": "Unprocessable content (Category not found)",
+									"originalRequest": {
+										"method": "POST",
+										"header": [
+											{
+												"key": "Content-Type",
+												"name": "Content-Type",
+												"value": "application/json",
+												"type": "text"
+											},
+											{
+												"key": "Accept",
+												"value": "application/json",
+												"type": "text"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n    \"categoryId\": 99,\r\n    \"name\": \"product 1\",\r\n    \"description\": \"lorem ipsum\",\r\n    \"price\": 100000,\r\n    \"weight\": 100,\r\n    \"stock\": 3\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{baseUrl}}/merchant/products",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"merchant",
+												"products"
+											]
+										}
+									},
+									"status": "Unprocessable Content",
+									"code": 422,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Server",
+											"value": "nginx/1.19.5"
+										},
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										},
+										{
+											"key": "Transfer-Encoding",
+											"value": "chunked"
+										},
+										{
+											"key": "Connection",
+											"value": "keep-alive"
+										},
+										{
+											"key": "X-Powered-By",
+											"value": "PHP/8.1.10"
+										},
+										{
+											"key": "Cache-Control",
+											"value": "no-cache, private"
+										},
+										{
+											"key": "Date",
+											"value": "Tue, 07 Feb 2023 19:49:29 GMT"
+										},
+										{
+											"key": "X-RateLimit-Limit",
+											"value": "60"
+										},
+										{
+											"key": "X-RateLimit-Remaining",
+											"value": "59"
+										},
+										{
+											"key": "Access-Control-Allow-Origin",
+											"value": "*"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"code\": 422,\n    \"message\": \"The given data was invalid\",\n    \"errors\": {\n        \"category_id\": [\n            \"The selected category is invalid.\"\n        ]\n    }\n}"
+								},
+								{
+									"id": "3dcf7ace-65f2-4581-b6cb-3ce23ba46c63",
+									"name": "Unprocessable Content (Duplicate of product's name)",
+									"originalRequest": {
+										"method": "POST",
+										"header": [
+											{
+												"key": "Content-Type",
+												"name": "Content-Type",
+												"value": "application/json",
+												"type": "text"
+											},
+											{
+												"key": "Accept",
+												"value": "application/json",
+												"type": "text"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n    \"categoryId\": 1,\r\n    \"name\": \"product 1\",\r\n    \"description\": \"lorem ipsum\",\r\n    \"price\": 100000,\r\n    \"weight\": 100,\r\n    \"stock\": 3\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{baseUrl}}/merchant/products",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"merchant",
+												"products"
+											]
+										}
+									},
+									"status": "Unprocessable Content",
+									"code": 422,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Server",
+											"value": "nginx/1.19.5"
+										},
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										},
+										{
+											"key": "Transfer-Encoding",
+											"value": "chunked"
+										},
+										{
+											"key": "Connection",
+											"value": "keep-alive"
+										},
+										{
+											"key": "X-Powered-By",
+											"value": "PHP/8.1.10"
+										},
+										{
+											"key": "Cache-Control",
+											"value": "no-cache, private"
+										},
+										{
+											"key": "Date",
+											"value": "Tue, 07 Feb 2023 19:57:02 GMT"
+										},
+										{
+											"key": "X-RateLimit-Limit",
+											"value": "60"
+										},
+										{
+											"key": "X-RateLimit-Remaining",
+											"value": "58"
+										},
+										{
+											"key": "Access-Control-Allow-Origin",
+											"value": "*"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"code\": 422,\n    \"message\": \"The given data was invalid\",\n    \"errors\": {\n        \"name\": [\n            \"The name has already been taken.\"\n        ]\n    }\n}"
+								},
+								{
+									"id": "135beb37-9055-41c3-8be8-d3ebc108f180",
+									"name": "Successfull operation",
+									"originalRequest": {
+										"method": "POST",
+										"header": [
+											{
+												"key": "Content-Type",
+												"name": "Content-Type",
+												"value": "application/json",
+												"type": "text"
+											},
+											{
+												"key": "Accept",
+												"value": "application/json",
+												"type": "text"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n    \"categoryId\": 1,\r\n    \"name\": \"product 1\",\r\n    \"description\": \"lorem ipsum\",\r\n    \"price\": 100000,\r\n    \"weight\": 100,\r\n    \"stock\": 3\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{baseUrl}}/merchant/products",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"merchant",
+												"products"
+											]
+										}
+									},
+									"status": "Created",
+									"code": 201,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Server",
+											"value": "nginx/1.19.5"
+										},
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										},
+										{
+											"key": "Transfer-Encoding",
+											"value": "chunked"
+										},
+										{
+											"key": "Connection",
+											"value": "keep-alive"
+										},
+										{
+											"key": "X-Powered-By",
+											"value": "PHP/8.1.10"
+										},
+										{
+											"key": "Cache-Control",
+											"value": "no-cache, private"
+										},
+										{
+											"key": "Date",
+											"value": "Tue, 07 Feb 2023 23:19:18 GMT"
+										},
+										{
+											"key": "X-RateLimit-Limit",
+											"value": "60"
+										},
+										{
+											"key": "X-RateLimit-Remaining",
+											"value": "58"
+										},
+										{
+											"key": "Access-Control-Allow-Origin",
+											"value": "*"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"code\": 201,\n    \"message\": \"The product created successfully\",\n    \"data\": {\n        \"id\": 0,\n        \"name\": \"Product 1\",\n        \"slug\": \"product-1\",\n        \"description\": \"lorem-ipsum\",\n        \"price\": 100000,\n        \"weight\": 100,\n        \"stock\": 3,\n        \"sold\": 0\n    }\n}"
+								}
+							]
+						},
+						{
+							"name": "Update product",
+							"id": "5fe136dd-8a67-48e5-a528-21410f93cea0",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true,
+								"disabledSystemHeaders": {
+									"accept": true
+								}
+							},
+							"request": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									},
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"categoryId\": 0,\r\n    \"name\": \"string\",\r\n    \"description\": \"string\",\r\n    \"price\": 0,\r\n    \"weight\": 0,\r\n    \"stock\": 0\r\n}"
+								},
+								"url": {
+									"raw": "{{baseUrl}}/merchant/products/:name",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"merchant",
+										"products",
+										":name"
+									],
+									"query": [
+										{
+											"key": "name",
+											"value": "",
+											"type": "text",
+											"disabled": true
+										}
+									],
+									"variable": [
+										{
+											"key": "name",
+											"value": "name as slug",
+											"description": "(Required) name that need to be updated"
+										}
+									]
+								}
+							},
+							"response": [
+								{
+									"id": "32572913-f750-4d5c-98c7-0dbc8f0ec675",
+									"name": "Successfull operation",
+									"originalRequest": {
+										"method": "PUT",
+										"header": [
+											{
+												"key": "Content-Type",
+												"name": "Content-Type",
+												"value": "application/json",
+												"type": "text"
+											},
+											{
+												"key": "Accept",
+												"value": "application/json",
+												"type": "text"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n    \"categoryId\": 1,\r\n    \"name\": \"product 1\",\r\n    \"description\": \"lorem ipsum\",\r\n    \"price\": 99000,\r\n    \"weight\": 100,\r\n    \"stock\": 3\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "https://laracommerce.test/api/merchant/products/:name",
+											"protocol": "https",
+											"host": [
+												"laracommerce",
+												"test"
+											],
+											"path": [
+												"api",
+												"merchant",
+												"products",
+												":name"
+											],
+											"variable": [
+												{
+													"key": "name",
+													"value": "name as slug",
+													"description": "(Required) name that need to be updated"
+												}
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Server",
+											"value": "nginx/1.19.5"
+										},
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										},
+										{
+											"key": "Transfer-Encoding",
+											"value": "chunked"
+										},
+										{
+											"key": "Connection",
+											"value": "keep-alive"
+										},
+										{
+											"key": "Vary",
+											"value": "Accept-Encoding"
+										},
+										{
+											"key": "X-Powered-By",
+											"value": "PHP/8.1.10"
+										},
+										{
+											"key": "Cache-Control",
+											"value": "no-cache, private"
+										},
+										{
+											"key": "Date",
+											"value": "Tue, 07 Feb 2023 23:49:58 GMT"
+										},
+										{
+											"key": "X-RateLimit-Limit",
+											"value": "60"
+										},
+										{
+											"key": "X-RateLimit-Remaining",
+											"value": "59"
+										},
+										{
+											"key": "Access-Control-Allow-Origin",
+											"value": "*"
+										},
+										{
+											"key": "Content-Encoding",
+											"value": "gzip"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"code\": 200,\n    \"message\": \"The product updated successfully.\",\n    \"data\": {\n        \"id\": 1,\n        \"categoryId\": 1,\n        \"name\": \"product 1\",\n        \"description\": \"lorem ipsum\",\n        \"price\": 99000,\n        \"weight\": 100,\n        \"stock\": 3,\n        \"sold\": 0\n    }\n}"
+								},
+								{
+									"id": "f8d0624d-92f7-4b91-8f3f-45cb8ec3b582",
+									"name": "Product not found",
+									"originalRequest": {
+										"method": "PUT",
+										"header": [
+											{
+												"key": "Content-Type",
+												"name": "Content-Type",
+												"value": "application/json",
+												"type": "text"
+											},
+											{
+												"key": "Accept",
+												"value": "application/json",
+												"type": "text"
+											}
+										],
+										"url": {
+											"raw": "{{baseUrl}}/merchant/products/:name",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"merchant",
+												"products",
+												":name"
+											],
+											"variable": [
+												{
+													"key": "name",
+													"value": "product-xxx",
+													"description": "(Required) name that need to be updated"
+												}
+											]
+										}
+									},
+									"status": "Not Found",
+									"code": 404,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Server",
+											"value": "nginx/1.19.5"
+										},
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										},
+										{
+											"key": "Transfer-Encoding",
+											"value": "chunked"
+										},
+										{
+											"key": "Connection",
+											"value": "keep-alive"
+										},
+										{
+											"key": "Vary",
+											"value": "Accept-Encoding"
+										},
+										{
+											"key": "X-Powered-By",
+											"value": "PHP/8.1.10"
+										},
+										{
+											"key": "Cache-Control",
+											"value": "no-cache, private"
+										},
+										{
+											"key": "Date",
+											"value": "Tue, 07 Feb 2023 23:50:52 GMT"
+										},
+										{
+											"key": "X-RateLimit-Limit",
+											"value": "60"
+										},
+										{
+											"key": "X-RateLimit-Remaining",
+											"value": "58"
+										},
+										{
+											"key": "Access-Control-Allow-Origin",
+											"value": "*"
+										},
+										{
+											"key": "Content-Encoding",
+											"value": "gzip"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"code\": 404,\n    \"message\": \"Product not found.\"\n}"
+								}
+							]
+						},
+						{
+							"name": "Delete product",
+							"id": "1304db25-5c0d-4007-bdd8-4154c0d604a4",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true,
+								"disabledSystemHeaders": {
+									"accept": true
+								}
+							},
+							"request": {
+								"method": "DELETE",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									},
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{baseUrl}}/merchant/products/:name",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"merchant",
+										"products",
+										":name"
+									],
+									"variable": [
+										{
+											"key": "name",
+											"value": "name as slug",
+											"description": "(Required) name that need to be deleted"
+										}
+									]
+								}
+							},
+							"response": [
+								{
+									"id": "4faa8c80-9e68-4d23-8c61-b321d9705952",
+									"name": "Successfull operation",
+									"originalRequest": {
+										"method": "DELETE",
+										"header": [
+											{
+												"key": "Content-Type",
+												"value": "application/json",
+												"type": "text"
+											},
+											{
+												"key": "Accept",
+												"value": "application/json",
+												"type": "text"
+											}
+										],
+										"url": {
+											"raw": "https://laracommerce.test/api/merchant/products/:name",
+											"protocol": "https",
+											"host": [
+												"laracommerce",
+												"test"
+											],
+											"path": [
+												"api",
+												"merchant",
+												"products",
+												":name"
+											],
+											"variable": [
+												{
+													"key": "name",
+													"value": "product-1",
+													"description": "(Required) name that need to be deleted"
+												}
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Server",
+											"value": "nginx/1.19.5"
+										},
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										},
+										{
+											"key": "Transfer-Encoding",
+											"value": "chunked"
+										},
+										{
+											"key": "Connection",
+											"value": "keep-alive"
+										},
+										{
+											"key": "Vary",
+											"value": "Accept-Encoding"
+										},
+										{
+											"key": "X-Powered-By",
+											"value": "PHP/8.1.10"
+										},
+										{
+											"key": "Cache-Control",
+											"value": "no-cache, private"
+										},
+										{
+											"key": "Date",
+											"value": "Tue, 07 Feb 2023 23:53:38 GMT"
+										},
+										{
+											"key": "X-RateLimit-Limit",
+											"value": "60"
+										},
+										{
+											"key": "X-RateLimit-Remaining",
+											"value": "58"
+										},
+										{
+											"key": "Access-Control-Allow-Origin",
+											"value": "*"
+										},
+										{
+											"key": "Content-Encoding",
+											"value": "gzip"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"code\": 200,\n    \"message\": \"The product deleted successfully.\"\n}"
+								},
+								{
+									"id": "86444e8b-44a9-494e-ba5a-abcf1ffd2e15",
+									"name": "Product not found",
+									"originalRequest": {
+										"method": "DELETE",
+										"header": [
+											{
+												"key": "Content-Type",
+												"value": "application/json",
+												"type": "text"
+											},
+											{
+												"key": "Accept",
+												"value": "application/json",
+												"type": "text"
+											}
+										],
+										"url": {
+											"raw": "{{baseUrl}}/merchant/products/:name",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"merchant",
+												"products",
+												":name"
+											],
+											"variable": [
+												{
+													"key": "name",
+													"value": "product-xxx",
+													"description": "(Required) name that need to be deleted"
+												}
+											]
+										}
+									},
+									"status": "Not Found",
+									"code": 404,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Server",
+											"value": "nginx/1.19.5"
+										},
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										},
+										{
+											"key": "Transfer-Encoding",
+											"value": "chunked"
+										},
+										{
+											"key": "Connection",
+											"value": "keep-alive"
+										},
+										{
+											"key": "Vary",
+											"value": "Accept-Encoding"
+										},
+										{
+											"key": "X-Powered-By",
+											"value": "PHP/8.1.10"
+										},
+										{
+											"key": "Cache-Control",
+											"value": "no-cache, private"
+										},
+										{
+											"key": "Date",
+											"value": "Tue, 07 Feb 2023 23:54:36 GMT"
+										},
+										{
+											"key": "X-RateLimit-Limit",
+											"value": "60"
+										},
+										{
+											"key": "X-RateLimit-Remaining",
+											"value": "59"
+										},
+										{
+											"key": "Access-Control-Allow-Origin",
+											"value": "*"
+										},
+										{
+											"key": "Content-Encoding",
+											"value": "gzip"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"code\": 404,\n    \"message\": \"Product not found.\"\n}"
+								}
+							]
+						},
+						{
+							"name": "Show all products",
+							"id": "72066e16-9f6a-4e28-8823-d5b86c46c55e",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true,
+								"disabledSystemHeaders": {
+									"accept": true
+								}
+							},
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									},
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{baseUrl}}/merchant/products",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"merchant",
+										"products"
+									]
+								}
+							},
+							"response": [
+								{
+									"id": "2ac254eb-456d-4bdd-a2fa-5a8bf8486295",
+									"name": "Successfull operation",
+									"originalRequest": {
+										"method": "GET",
+										"header": [
+											{
+												"key": "Content-Type",
+												"value": "application/json",
+												"type": "text"
+											},
+											{
+												"key": "Accept",
+												"value": "application/json",
+												"type": "text"
+											}
+										],
+										"url": {
+											"raw": "{{baseUrl}}/merchant/products",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"merchant",
+												"products"
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Server",
+											"value": "nginx/1.19.5"
+										},
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										},
+										{
+											"key": "Transfer-Encoding",
+											"value": "chunked"
+										},
+										{
+											"key": "Connection",
+											"value": "keep-alive"
+										},
+										{
+											"key": "Vary",
+											"value": "Accept-Encoding"
+										},
+										{
+											"key": "X-Powered-By",
+											"value": "PHP/8.1.10"
+										},
+										{
+											"key": "Cache-Control",
+											"value": "no-cache, private"
+										},
+										{
+											"key": "Date",
+											"value": "Wed, 08 Feb 2023 03:47:18 GMT"
+										},
+										{
+											"key": "X-RateLimit-Limit",
+											"value": "60"
+										},
+										{
+											"key": "X-RateLimit-Remaining",
+											"value": "59"
+										},
+										{
+											"key": "Access-Control-Allow-Origin",
+											"value": "*"
+										},
+										{
+											"key": "Content-Encoding",
+											"value": "gzip"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"code\": 200,\n    \"message\": \"Success\",\n    \"data\": [\n        {\n            \"id\": 15,\n            \"name\": \"Product 2\",\n            \"slug\": \"product-2-kani783\",\n            \"description\": \"lorem ipsum\",\n            \"price\": 100000,\n            \"weight\": 100,\n            \"stock\": 3,\n            \"sold\": 0\n        },\n        {\n            \"id\": 13,\n            \"name\": \"Product 1\",\n            \"slug\": \"product-1-kani992\",\n            \"description\": \"lorem ipsum\",\n            \"price\": 100000,\n            \"weight\": 100,\n            \"stock\": 3,\n            \"sold\": 0\n        }\n    ],\n    \"pages\": {\n        \"links\": {\n            \"first\": \"https://laracommerce.test/api/merchant/products?page=1\",\n            \"last\": \"https://laracommerce.test/api/merchant/products?page=1\",\n            \"prev\": null,\n            \"next\": null\n        },\n        \"meta\": {\n            \"current_page\": 1,\n            \"from\": 1,\n            \"last_page\": 1,\n            \"links\": [\n                {\n                    \"url\": null,\n                    \"label\": \"&laquo; Previous\",\n                    \"active\": false\n                },\n                {\n                    \"url\": \"https://laracommerce.test/api/merchant/products?page=1\",\n                    \"label\": \"1\",\n                    \"active\": true\n                },\n                {\n                    \"url\": null,\n                    \"label\": \"Next &raquo;\",\n                    \"active\": false\n                }\n            ],\n            \"path\": \"https://laracommerce.test/api/merchant/products\",\n            \"per_page\": 6,\n            \"to\": 2,\n            \"total\": 2\n        }\n    }\n}"
+								}
+							]
+						}
+					],
+					"id": "b1011282-b796-4dd2-af07-99d8852e2cf5",
+					"description": "## **This section contains about product endpoints**",
+					"auth": {
+						"type": "bearer",
+						"bearer": [
+							{
+								"key": "token",
+								"value": "{{BearerToken}}",
+								"type": "string"
+							}
+						]
+					},
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "d74c1b48-caab-4a7b-a5e8-ef8693cbbb67",
+								"type": "text/javascript",
+								"exec": [
+									""
+								]
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"id": "b075144b-0a21-4c17-a23f-a63c71f681f8",
+								"type": "text/javascript",
+								"exec": [
+									""
+								]
+							}
+						}
+					]
+				}
+			],
+			"id": "439c5360-3b32-4e65-a3d6-79dc74327cb7",
+			"description": "## **This section contains about merchant activity**",
+			"auth": {
+				"type": "noauth"
+			},
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "ca20d6be-7258-4369-ab7a-29fc25c128d3",
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"id": "838f8ca1-ff0f-4ab1-80fa-2a063286e6d3",
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				}
+			]
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"id": "8071a333-57fb-486d-bf29-a7276e2ac05c",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"id": "16d1b877-d210-477b-9e6a-572256571441",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"id": "fa822b16-fc06-44f0-aa5d-c0d910c8774a",
+			"key": "BearerToken",
+			"value": "theTokenWillBeAvailableAfterAccessingTheLoginEndpoint",
+			"type": "string"
+		},
+		{
+			"id": "cc15d329-9256-4c7b-bcf1-ad06675b9fd3",
+			"key": "baseUrl",
+			"value": "https://testing.igloo.hr/api",
+			"type": "string"
+		},
+		{
+			"id": "44fb094e-8d8b-4561-9149-1adb58bca362",
+			"key": "username",
+			"value": "matej",
+			"type": "string"
+		},
+		{
+			"id": "23df271c-4e2d-4ce1-abe5-d5241182e20a",
+			"key": "email",
+			"value": "matej.vitkovic@live.com",
+			"type": "string"
+		},
+		{
+			"id": "09f7ca13-a53b-44a9-937a-5875a650597e",
+			"key": "password",
+			"value": "matejmatej",
+			"type": "string"
+		},
+		{
+			"id": "2e6f4b52-d853-462c-a44b-dad5c4dd86ba",
+			"key": "username-unverified",
+			"value": "matej-admin2",
+			"type": "string"
+		},
+		{
+			"id": "abfbcb94-aa84-4468-8473-3c4c9de1ae41",
+			"key": "password-unverified",
+			"value": "matejmatej1$",
+			"type": "string"
+		}
+	]
+}
