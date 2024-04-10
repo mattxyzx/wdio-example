@@ -4,6 +4,8 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
+        - name: Install Chromium
+          run: sudo apt-get install chromium-browser
         - name: Checkout
           uses: actions/checkout@v4
         - uses: actions/setup-node@v3
@@ -12,7 +14,7 @@ jobs:
         - name: Install
           run: npm install
         - name: Test
-          run: wdio run --spec test.e2e.js
+          run: npm run wdio cicd.wdio.conf.js
         - uses: actions/upload-artifact@v1
           if: failure()
           with:
