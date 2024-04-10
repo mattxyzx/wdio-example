@@ -2136,7 +2136,7 @@
 		{
 			"listen": "prerequest",
 			"script": {
-				"id": "0b420ac1-c133-4ad2-949b-9db8cdaa12ea",
+				"id": "8071a333-57fb-486d-bf29-a7276e2ac05c",
 				"type": "text/javascript",
 				"exec": [
 					""
@@ -2146,7 +2146,7 @@
 		{
 			"listen": "test",
 			"script": {
-				"id": "2648548e-8fd4-4420-89a9-04e57d605972",
+				"id": "16d1b877-d210-477b-9e6a-572256571441",
 				"type": "text/javascript",
 				"exec": [
 					""
@@ -2156,33 +2156,45 @@
 	],
 	"variable": [
 		{
-			"id": "a5e088bc-dcf0-4c34-93d4-775cfc7b538c",
+			"id": "fa822b16-fc06-44f0-aa5d-c0d910c8774a",
 			"key": "BearerToken",
 			"value": "theTokenWillBeAvailableAfterAccessingTheLoginEndpoint",
 			"type": "string"
 		},
 		{
-			"id": "83778ae6-ee27-4e2b-b2b7-fb8507034c72",
+			"id": "cc15d329-9256-4c7b-bcf1-ad06675b9fd3",
 			"key": "baseUrl",
-			"value": "https://laracommerce.test/api",
+			"value": "https://testing.igloo.hr/api",
 			"type": "string"
 		},
 		{
-			"id": "a3958cac-6523-4574-9b10-0da3982e58b5",
+			"id": "44fb094e-8d8b-4561-9149-1adb58bca362",
 			"key": "username",
 			"value": "matej",
 			"type": "string"
 		},
 		{
-			"id": "c428ee43-612c-424f-bb97-6c0036538c26",
+			"id": "23df271c-4e2d-4ce1-abe5-d5241182e20a",
 			"key": "email",
 			"value": "matej.vitkovic@live.com",
 			"type": "string"
 		},
 		{
-			"id": "c9a989ec-bd7d-40ea-9ef9-a13f9df5c8e6",
+			"id": "09f7ca13-a53b-44a9-937a-5875a650597e",
 			"key": "password",
 			"value": "matejmatej",
+			"type": "string"
+		},
+		{
+			"id": "2e6f4b52-d853-462c-a44b-dad5c4dd86ba",
+			"key": "username-unverified",
+			"value": "matej-admin2",
+			"type": "string"
+		},
+		{
+			"id": "abfbcb94-aa84-4468-8473-3c4c9de1ae41",
+			"key": "password-unverified",
+			"value": "matejmatej1$",
 			"type": "string"
 		}
 	]
