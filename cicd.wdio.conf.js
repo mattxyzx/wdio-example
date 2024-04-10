@@ -4,6 +4,5 @@ export const config = deepmerge(wdioConfig.config, {
     capabilities: [{
         browserName: 'chrome',
         'goog:chromeOptions': {args: ['--headless', '--disable-gpu', '--no-sandbox', '--disable-dev-shm-usage']}
-    }],
-    specs: ['specs/*']
+    }]
 });
