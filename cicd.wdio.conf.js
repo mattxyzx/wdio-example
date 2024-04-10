@@ -3,6 +3,7 @@ import wdioConfig from './wdio.conf.js';
 export const config = deepmerge(wdioConfig.config, {
     capabilities: [{
         browserName: 'chrome',
-        'goog:chromeOptions': ['--headless', '--disable-gpu']
-    }]
+        'goog:chromeOptions': {args: ['--headless', '--disable-gpu', '--disable-dev-shm-usage']}
+    }],
+    specs: ['specs/*']
 });
