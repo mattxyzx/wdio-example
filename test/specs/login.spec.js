@@ -20,5 +20,10 @@ describe('My Login application', () => {
         await expect(dashboardPage.userDropdown).toExist()
     })
     it('should log out', async () => {
+        browser.setWindowSize(1920, 1080);
+            await dashboardPage.userDropdown.click();
+            await dashboardPage.logoutButton.click();
+        
+        await expect(loginPage.inputEmail).toExist()
     })
 })
