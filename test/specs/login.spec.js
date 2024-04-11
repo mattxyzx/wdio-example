@@ -19,13 +19,6 @@ describe('My Login application', () => {
         await loginPage.doLogin(email, password)
         await expect(dashboardPage.userDropdown).toExist()
     })
-    it('should log out', async () => {})
+    it('should log out', async () => {
+    })
 })
-
-//add tests for login with wrong data
-// login with email
-// login with username - note no validation is displayed- BUG
-
-//add tests for login with wrong data
-// login with email
-// login with username - note no validation is displayed- BUG

@@ -17,4 +17,4 @@ jobs:
         run: npm install -g newman
 
       - name: Run Postman Collection
-        run: newman run ${{ github.workspace }}/postman/collections/LaraCommerce API.json -d 1 -n 100
+        run: newman run ${{ github.workspace }}/postman/collections/load test.json -d 1 -n 100
