@@ -51,7 +51,7 @@ export const config = {
     //
     capabilities: [{
         browserName: 'chrome',
-       'goog:chromeOptions': {args: ['--no-sandbox', '--disable-dev-shm-usage', '--headless', '--disable-gpu',  '--remote-debugging-pipe']}
+       // 'goog:chromeOptions': {args: ['--no-sandbox', '--disable-dev-shm-usage', '--headless', '--disable-gpu',  '--remote-debugging-pipe']}
     }],
 
     //
