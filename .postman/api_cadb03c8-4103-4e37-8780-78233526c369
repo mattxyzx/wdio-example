@@ -9,7 +9,10 @@ id = cadb03c8-4103-4e37-8780-78233526c369
 
 [config.relations.collections]
 rootDirectory = postman/collections
+files[] = {"id":"34148893-69cd0f9f-f022-45cf-b2fb-482be1803bfa","path":"LaraCommerce API Copy.json","metaData":{}}
 files[] = {"id":"34148893-a8844cc3-6d6c-4854-ad01-8979ce8fe685","path":"LaraCommerce API.json","metaData":{}}
+files[] = {"id":"34148893-78ed95f7-cbd4-4fa3-879c-4d4abac7d403","path":"load test.json","metaData":{}}
+files[] = {"id":"34148893-6c585d36-3e7c-4618-9822-e047fc2c5ba8","path":"simulated load test.json","metaData":{}}
 
 [config.relations.collections.metaData]
 

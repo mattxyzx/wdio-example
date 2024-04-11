@@ -1,10 +1,10 @@
 {
 	"info": {
-		"_postman_id": "78ed95f7-cbd4-4fa3-879c-4d4abac7d403",
-		"name": "load test",
+		"_postman_id": "6c585d36-3e7c-4618-9822-e047fc2c5ba8",
+		"name": "simulated load test",
 		"description": "## This documentation describes how to access the LaraCommerce API service\n\nContact Support:  \nEmail: [laracommerce12@gmail.com](mailto:laracommerce12@gmail.com) / muhammadhabibfery@gmail.com",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-		"_uid": "34148893-78ed95f7-cbd4-4fa3-879c-4d4abac7d403"
+		"_uid": "34148893-6c585d36-3e7c-4618-9822-e047fc2c5ba8"
 	},
 	"item": [
 		{
@@ -12,231 +12,49 @@
 			"item": [
 				{
 					"name": "Load page",
-					"id": "063cc8af-04a7-4fb7-9372-921ec6b6d047",
+					"id": "b977b9ed-0044-4bb0-9536-307287eb2d61",
 					"protocolProfileBehavior": {
-						"disableBodyPruning": true,
-						"disabledSystemHeaders": {
-							"accept": true
-						}
+						"disableBodyPruning": true
 					},
 					"request": {
 						"method": "GET",
-						"header": [
-							{
-								"key": "Content-Type",
-								"value": "application/json",
-								"type": "text"
-							},
-							{
-								"key": "Accept",
-								"value": "application/json",
-								"type": "text"
-							}
-						],
-						"body": {
-							"mode": "raw",
-							"raw": "{\r\n    \"username\": \"string\",\r\n    \"password\": \"string\"\r\n}"
-						},
+						"header": [],
 						"url": {
-							"raw": "{{baseUrl}}/",
+							"raw": "{{baseUrl}}/login",
 							"host": [
 								"{{baseUrl}}"
 							],
 							"path": [
-								""
+								"login"
 							]
 						}
 					},
-					"response": [
-						{
-							"id": "065ff7e4-4656-48c6-9652-7305dff6d67d",
-							"name": "Successfull operation",
-							"originalRequest": {
-								"method": "POST",
-								"header": [
-									{
-										"key": "Content-Type",
-										"name": "Content-Type",
-										"value": "application/json",
-										"type": "text"
-									},
-									{
-										"key": "Accept",
-										"value": "application/json",
-										"type": "text"
-									}
-								],
-								"body": {
-									"mode": "raw",
-									"raw": "{\r\n    \"username\": \"john-lennon\",\r\n    \"password\": \"secret@123\",\r\n}",
-									"options": {
-										"raw": {
-											"language": "json"
-										}
-									}
-								},
-								"url": {
-									"raw": "https://laracommerce.test/api/login",
-									"protocol": "https",
-									"host": [
-										"laracommerce",
-										"test"
-									],
-									"path": [
-										"api",
-										"login"
-									]
-								}
-							},
-							"status": "OK",
-							"code": 200,
-							"_postman_previewlanguage": "json",
-							"_postman_previewtype": "html",
-							"header": [
-								{
-									"key": "Server",
-									"value": "nginx/1.19.5"
-								},
-								{
-									"key": "Content-Type",
-									"value": "application/json"
-								},
-								{
-									"key": "Transfer-Encoding",
-									"value": "chunked"
-								},
-								{
-									"key": "Connection",
-									"value": "keep-alive"
-								},
-								{
-									"key": "Vary",
-									"value": "Accept-Encoding"
-								},
-								{
-									"key": "X-Powered-By",
-									"value": "PHP/8.1.10"
-								},
-								{
-									"key": "Cache-Control",
-									"value": "no-cache, private"
-								},
-								{
-									"key": "Date",
-									"value": "Sat, 04 Feb 2023 17:58:26 GMT"
-								},
-								{
-									"key": "X-RateLimit-Limit",
-									"value": "60"
-								},
-								{
-									"key": "X-RateLimit-Remaining",
-									"value": "59"
-								},
-								{
-									"key": "Access-Control-Allow-Origin",
-									"value": "*"
-								},
-								{
-									"key": "Content-Encoding",
-									"value": "gzip"
-								}
-							],
-							"cookie": [],
-							"body": "{\n    \"code\": 200,\n    \"message\": \"Logged in succesfully.\",\n    \"data\": {\n        \"id\": 0,\n        \"name\": \"john lennon\",\n        \"username\": \"john-lennon\",\n        \"email\": \"johnlennon@beatles.com\",\n        \"phone\": \"0812345678\",\n        \"address\": null,\n        \"avatar\": null\n    },\n    \"token\": \"randomToken\"\n}"
-						},
-						{
-							"id": "a1afeba4-b8ab-47a7-95d8-530b77c1f71e",
-							"name": "Unprocessable Content",
-							"originalRequest": {
-								"method": "POST",
-								"header": [
-									{
-										"key": "Content-Type",
-										"name": "Content-Type",
-										"value": "application/json",
-										"type": "text"
-									},
-									{
-										"key": "Accept",
-										"value": "application/json",
-										"type": "text"
-									}
-								],
-								"body": {
-									"mode": "raw",
-									"raw": "{\r\n    \"username\": \"john-lennon\",\r\n    \"password\": \"abc\"\r\n}",
-									"options": {
-										"raw": {
-											"language": "json"
-										}
-									}
-								},
-								"url": {
-									"raw": "{{baseUrl}}/login",
-									"host": [
-										"{{baseUrl}}"
-									],
-									"path": [
-										"login"
-									]
-								}
-							},
-							"status": "Unprocessable Content",
-							"code": 422,
-							"_postman_previewlanguage": "json",
-							"_postman_previewtype": "html",
-							"header": [
-								{
-									"key": "Server",
-									"value": "nginx/1.19.5"
-								},
-								{
-									"key": "Content-Type",
-									"value": "application/json"
-								},
-								{
-									"key": "Transfer-Encoding",
-									"value": "chunked"
-								},
-								{
-									"key": "Connection",
-									"value": "keep-alive"
-								},
-								{
-									"key": "X-Powered-By",
-									"value": "PHP/8.1.10"
-								},
-								{
-									"key": "Cache-Control",
-									"value": "no-cache, private"
-								},
-								{
-									"key": "Date",
-									"value": "Sat, 04 Feb 2023 18:04:05 GMT"
-								},
-								{
-									"key": "X-RateLimit-Limit",
-									"value": "60"
-								},
-								{
-									"key": "X-RateLimit-Remaining",
-									"value": "59"
-								},
-								{
-									"key": "Access-Control-Allow-Origin",
-									"value": "*"
-								}
-							],
-							"cookie": [],
-							"body": "{\n    \"code\": 422,\n    \"message\": \"The given data was invalid\",\n    \"errors\": {\n        \"username\": [\n            \"The credentials does not match.\"\n        ]\n    }\n}"
-						}
-					]
+					"response": []
 				},
 				{
-					"name": "Login user",
-					"id": "353c616f-db4d-4da3-9ea3-c05a65ce6830",
+					"name": "Login user with email",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "97346c76-80c8-405a-aa77-aa764dc8a127",
+								"exec": [
+									"let jsonResponse = JSON.parse(responseBody);\r",
+									"let token = jsonResponse.token;\r",
+									"pm.environment.set(\"BearerToken\", token);\r",
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"id": "f4e853d8-be51-4b8b-a7f1-bbc3b702acbf",
 					"protocolProfileBehavior": {
+						"disableBodyPruning": true,
 						"disabledSystemHeaders": {
 							"accept": true
 						}
@@ -257,7 +75,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"username\": \"string\",\r\n    \"password\": \"string\"\r\n}"
+							"raw": "{\r\n    \"username\": \"{{email}}\",\r\n    \"password\": \"{{password}}\"\r\n}"
 						},
 						"url": {
 							"raw": "{{baseUrl}}/login",
@@ -271,14 +89,13 @@
 					},
 					"response": [
 						{
-							"id": "7edfc6ce-d9ca-49cc-add0-4edc53ac6818",
+							"id": "7991489b-45e3-4f64-a7dd-878553a819a0",
 							"name": "Successfull operation",
 							"originalRequest": {
 								"method": "POST",
 								"header": [
 									{
 										"key": "Content-Type",
-										"name": "Content-Type",
 										"value": "application/json",
 										"type": "text"
 									},
@@ -290,22 +107,14 @@
 								],
 								"body": {
 									"mode": "raw",
-									"raw": "{\r\n    \"username\": \"john-lennon\",\r\n    \"password\": \"secret@123\",\r\n}",
-									"options": {
-										"raw": {
-											"language": "json"
-										}
-									}
+									"raw": "{\r\n    \"username\": \"{{email}}\",\r\n    \"password\": \"{{password}}\"\r\n}"
 								},
 								"url": {
-									"raw": "https://laracommerce.test/api/login",
-									"protocol": "https",
+									"raw": "{{baseUrl}}/login",
 									"host": [
-										"laracommerce",
-										"test"
+										"{{baseUrl}}"
 									],
 									"path": [
-										"api",
 										"login"
 									]
 								}
@@ -313,7 +122,6 @@
 							"status": "OK",
 							"code": 200,
 							"_postman_previewlanguage": "json",
-							"_postman_previewtype": "html",
 							"header": [
 								{
 									"key": "Server",
@@ -368,14 +176,13 @@
 							"body": "{\n    \"code\": 200,\n    \"message\": \"Logged in succesfully.\",\n    \"data\": {\n        \"id\": 0,\n        \"name\": \"john lennon\",\n        \"username\": \"john-lennon\",\n        \"email\": \"johnlennon@beatles.com\",\n        \"phone\": \"0812345678\",\n        \"address\": null,\n        \"avatar\": null\n    },\n    \"token\": \"randomToken\"\n}"
 						},
 						{
-							"id": "310b8044-7038-4cda-b553-62fccb7485d6",
+							"id": "31f89ec5-d3c4-407f-b095-aa1e5403da0a",
 							"name": "Unprocessable Content",
 							"originalRequest": {
 								"method": "POST",
 								"header": [
 									{
 										"key": "Content-Type",
-										"name": "Content-Type",
 										"value": "application/json",
 										"type": "text"
 									},
@@ -387,12 +194,7 @@
 								],
 								"body": {
 									"mode": "raw",
-									"raw": "{\r\n    \"username\": \"john-lennon\",\r\n    \"password\": \"abc\"\r\n}",
-									"options": {
-										"raw": {
-											"language": "json"
-										}
-									}
+									"raw": "{\r\n    \"username\": \"{{email}}\",\r\n    \"password\": \"{{password}}\"\r\n}"
 								},
 								"url": {
 									"raw": "{{baseUrl}}/login",
@@ -407,7 +209,6 @@
 							"status": "Unprocessable Content",
 							"code": 422,
 							"_postman_previewlanguage": "json",
-							"_postman_previewtype": "html",
 							"header": [
 								{
 									"key": "Server",
@@ -457,8 +258,24 @@
 				},
 				{
 					"name": "Logout user",
-					"id": "8830810f-e98e-40b0-ba03-4d32bd12cb3f",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "d96039c3-90c5-41b1-b4a1-2cac2cc4189e",
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"id": "da7d637c-bef7-4a8e-9ae0-91456ecb9118",
 					"protocolProfileBehavior": {
+						"disableBodyPruning": true,
 						"disabledSystemHeaders": {
 							"accept": true
 						}
@@ -499,9 +316,19 @@
 					},
 					"response": [
 						{
-							"id": "0afaa839-a6d4-4b00-8363-487c7883dd39",
+							"id": "c63bb412-46b2-43b2-8857-397702bfddfb",
 							"name": "Successfull operation",
 							"originalRequest": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{BearerToken}}",
+											"type": "string"
+										}
+									]
+								},
 								"method": "POST",
 								"header": [
 									{
@@ -528,7 +355,6 @@
 							"status": "OK",
 							"code": 200,
 							"_postman_previewlanguage": "json",
-							"_postman_previewtype": "html",
 							"header": [
 								{
 									"key": "Server",
@@ -585,7 +411,7 @@
 					]
 				}
 			],
-			"id": "8623c840-de0d-44d8-9bbf-1eef4febe6ec",
+			"id": "78415464-ec73-4503-b714-400f736143f4",
 			"description": "## **This section contains about authentication endpoints**",
 			"auth": {
 				"type": "noauth"
@@ -594,62 +420,89 @@
 				{
 					"listen": "prerequest",
 					"script": {
+						"id": "f5535730-3701-41fe-b548-9669901a7499",
 						"type": "text/javascript",
 						"exec": [
 							""
-						],
-						"id": "c309c535-7bb1-4204-8170-38b941f023d0"
+						]
 					}
 				},
 				{
 					"listen": "test",
 					"script": {
+						"id": "da56bf48-1d20-4fee-9701-d73889d735fb",
 						"type": "text/javascript",
 						"exec": [
 							""
-						],
-						"id": "06becb20-5444-4310-a34c-49580602c3de"
+						]
 					}
 				}
 			]
 		}
 	],
-	"auth": {
-		"type": "bearer"
-	},
 	"event": [
 		{
 			"listen": "prerequest",
 			"script": {
+				"id": "06603a5b-5e1b-4b62-b99f-84aa7a483985",
 				"type": "text/javascript",
 				"exec": [
 					""
-				],
-				"id": "b5c5d2cb-1642-4356-863f-109c3a58b44c"
+				]
 			}
 		},
 		{
 			"listen": "test",
 			"script": {
+				"id": "7c1ec046-5151-49f6-b670-ece07bca4ddd",
 				"type": "text/javascript",
 				"exec": [
 					""
-				],
-				"id": "1fb0d7eb-0b8c-40f1-8da7-d1f89a547797"
+				]
 			}
 		}
 	],
 	"variable": [
 		{
-			"id": "9d30e4d1-3420-496c-8341-c75ecf3b08b2",
+			"id": "fa822b16-fc06-44f0-aa5d-c0d910c8774a",
 			"key": "BearerToken",
 			"value": "theTokenWillBeAvailableAfterAccessingTheLoginEndpoint",
 			"type": "string"
 		},
 		{
-			"id": "70392a25-cb0f-4093-9e14-cf17fda95ab5",
+			"id": "cc15d329-9256-4c7b-bcf1-ad06675b9fd3",
 			"key": "baseUrl",
 			"value": "https://testing.igloo.hr/api",
+			"type": "string"
+		},
+		{
+			"id": "44fb094e-8d8b-4561-9149-1adb58bca362",
+			"key": "username",
+			"value": "matej",
+			"type": "string"
+		},
+		{
+			"id": "23df271c-4e2d-4ce1-abe5-d5241182e20a",
+			"key": "email",
+			"value": "matej.vitkovic@live.com",
+			"type": "string"
+		},
+		{
+			"id": "09f7ca13-a53b-44a9-937a-5875a650597e",
+			"key": "password",
+			"value": "matejmatej",
+			"type": "string"
+		},
+		{
+			"id": "2e6f4b52-d853-462c-a44b-dad5c4dd86ba",
+			"key": "username-unverified",
+			"value": "matej-admin2",
+			"type": "string"
+		},
+		{
+			"id": "abfbcb94-aa84-4468-8473-3c4c9de1ae41",
+			"key": "password-unverified",
+			"value": "matejmatej1$",
 			"type": "string"
 		}
 	]
